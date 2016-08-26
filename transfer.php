@@ -84,12 +84,12 @@ class API extends Connect
                         $data['status'] = 'Success';
                     } else {
                         // 餘額不足無法轉出
-                        $data['status'] = 'Insufficient balance';
+                        $data['status'] = 'Wrong parameters';
                     }
                 }
             }
         } else {
-            $data['status'] = 'Insufficient balance';
+            $data['status'] = '';
         }
         return $data;
     }
