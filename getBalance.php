@@ -7,6 +7,12 @@ class API extends Connect
         $account = $_GET['account'];
 
         if ($account) {
+            if (!preg_match("/^([A-Za-z0-9]+)$/", $account)) {
+                $data['status'] = "account Only use number and English alphabet";
+
+                return $data;
+            }
+
             $a = $this->db->prepare("SELECT `account`,`balance` FROM `account` WHERE `account` = :account");
             $a->bindParam(':account', $account);
             $a->execute();
@@ -16,7 +22,6 @@ class API extends Connect
             } else {
                 $data['status'] = "Not found account";
             }
-
         return $data;
         }
     }
